@@ -1,0 +1,78 @@
+--temp-output:C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\obj\Debug\net461\
+--out:C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\bin\Debug\net461\MasterCard-Core-Unofficial.dll
+--define:DEBUG
+--define:TRACE
+--define:NET461
+--suppress-warning:CS1701
+--suppress-warning:CS1702
+--suppress-warning:CS1705
+--optimize:False
+--output-name:MasterCard-Core-Unofficial
+--title:MasterCard's API SDK - Unofficial
+--description:This is a duplication of MasterCard-Core, but has compatibility to .NET Core.
+--copyright:Copyright 2016
+--file-version:1.1.4.0
+--version:1.1.4.0
+--informational-version:1.1.4
+--neutral-language:en-US
+--target-framework:.NETFramework,Version=v4.6.1
+--reference:C:\Users\antho\.nuget\packages\log4net\2.0.5\lib\net45-full\log4net.dll
+--reference:C:\Users\antho\.nuget\packages\Microsoft.Extensions.DependencyInjection.Abstractions\1.0.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+--reference:C:\Users\antho\.nuget\packages\Microsoft.Extensions.Logging\1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.dll
+--reference:C:\Users\antho\.nuget\packages\Microsoft.Extensions.Logging.Abstractions\1.0.0\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll
+--reference:C:\Users\antho\.nuget\packages\Microsoft.Extensions.Logging.Debug\1.0.0\lib\net451\Microsoft.Extensions.Logging.Debug.dll
+--reference:C:\Users\antho\.nuget\packages\Newtonsoft.Json\9.0.1\lib\net45\Newtonsoft.Json.dll
+--reference:C:\Users\antho\.nuget\packages\RestSharp\105.2.3\lib\net46\RestSharp.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Collections.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Collections.Concurrent.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.ComponentModel.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Diagnostics.Debug.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Globalization.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Linq.Expressions.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Reflection.dll
+--reference:C:\Users\antho\.nuget\packages\System.Reflection.TypeExtensions\4.1.0\ref\net46\System.Reflection.TypeExtensions.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Resources.ResourceManager.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.Extensions.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.InteropServices.dll
+--reference:C:\Users\antho\.nuget\packages\System.Runtime.Serialization.Formatters\4.0.0-rc3-24212-01\ref\net46\System.Runtime.Serialization.Formatters.dll
+--reference:C:\Users\antho\.nuget\packages\System.Runtime.Serialization.Primitives\4.1.1\ref\net46\System.Runtime.Serialization.Primitives.dll
+--reference:C:\Users\antho\.nuget\packages\System.Security.Cryptography.Algorithms\4.2.0\ref\net461\System.Security.Cryptography.Algorithms.dll
+--reference:C:\Users\antho\.nuget\packages\System.Security.Cryptography.Csp\4.0.0\ref\net46\System.Security.Cryptography.Csp.dll
+--reference:C:\Users\antho\.nuget\packages\System.Security.Cryptography.Primitives\4.0.0\ref\net46\System.Security.Cryptography.Primitives.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Threading.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Facades\System.Runtime.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Core.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Microsoft.CSharp.dll
+--reference:C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Runtime.Serialization.dll
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core\ApiConfig.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core\ApiController.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core\Util.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\ApiCommunicationException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\ApiException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\AuthenticationException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\FieldError.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\InvalidRequestException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\NotAllowedException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\ObjectNotFoundException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Exceptions\SystemException.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\BaseObject.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\OperationConfig.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\OperationMetadata.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\RequestMap.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\ResourceList.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Model\RestyRequest.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security\AuthenticationInterface.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security\CryptographyInterceptor.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security\CryptUtil.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security.MDES\MDESCryptography.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security.OAuth\OAuthAuthentication.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security.OAuth\OAuthParameters.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Core.Security.OAuth\OAuthUtil.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Extensions\ILoggerExtensions.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\MasterCard.Extensions\RestClientExtensions.cs
+C:\Users\antho\Downloads\MasterCard-Core-1.1.4\MasterCard-Core-Unofficial\Properties\AssemblyInfo.cs

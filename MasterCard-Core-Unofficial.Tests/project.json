@@ -1,0 +1,62 @@
+{
+  "version": "1.0.0-*",
+  "testRunner": "nunit",
+
+  "dependencies": {
+    "Newtonsoft.Json": "9.0.1",
+    "NUnit": "3.4.1",
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "MasterCard-Core-Unofficial": "1.1.4"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "dnxcore50",
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        },
+        "RestSharp.NetCore": "105.2.3",
+        "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01",
+        "System.Security.Cryptography.Csp": "4.0.0",
+        "moq.netcore": "4.4.0-beta8",
+        "System.Reflection.TypeExtensions": "4.1.0",
+        "System.Diagnostics.TraceSource": "4.0.0"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "Castle.Core": "3.3.3",
+        "Moq": "4.5.22",
+        "RestSharp": "105.2.3",
+        "log4net": "2.0.5",
+        "System.Diagnostics.TraceSource": "4.0.0"
+      },
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0",
+        "System.Diagnostics.Tracing": "4.0.20.0"
+      }
+    }
+  },
+
+  "buildOptions": {
+    "emitEntryPoint": false,
+    "copyToOutput": [
+      "certificate.p12",
+      "mastercard_private.pem",
+      "mastercard_public.crt",
+      "prod_key.p12"
+    ]
+  },
+
+  "runtimes": {
+    "Win": {},
+    "win7-x64" : {},
+    "unix" : {}
+  }
+}

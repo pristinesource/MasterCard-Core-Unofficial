@@ -1,0 +1,65 @@
+﻿{
+  "version": "1.1.4",
+  "authors": [ "PristineSource" ],
+  "title": "MasterCard's API SDK - Unofficial",
+  "description": "This is a duplication of MasterCard-Core, but has compatibility to .NET Core.",
+  "copyright": "Copyright 2016",
+  "language": "en-US",
+
+
+  "dependencies": {
+    "Microsoft.Extensions.Logging": "1.0.0",
+    "Microsoft.Extensions.Logging.Abstractions": "1.0.0",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0",
+    "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01",
+    "Newtonsoft.Json": "9.0.1",
+    "System.Security.Cryptography.Csp": "4.0.0",
+    "System.Reflection.TypeExtensions": "4.1.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.6.0",
+        "RestSharp.NetCore": "105.2.4-rc4-24214-01",
+        "System.Runtime": "4.1.0"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "RestSharp": "105.2.3",
+        "log4net": "2.0.5"
+      },
+      "frameworkAssemblies": {
+        "System.Xml": "4.0.0.0",
+        "System.Web": "4.0.0.0",
+        "System.Runtime": "4.0.20.0"
+      }
+    }
+  },
+
+  "packOptions": {
+    "owners": [
+      "mastercardapi",
+      "PristineSource"
+    ],
+    "requireLicenseAcceptance": true,
+    "licenseUrl": "https://opensource.org/licenses/BSD-2-Clause",
+    "iconUrl": "",
+    "summary": "This is the core library for all the SDKs in the MasterCard developer portal",
+    "releaseNotes": "",
+    "tags": [ "MasterCard", "netcore", "net core", "api", "core" ],
+    "repository": {
+      "type": "git",
+      "url": ""
+    },
+    "projectUrl": ""
+  },
+
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
+  }
+}
