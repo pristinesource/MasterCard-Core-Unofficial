@@ -1,4 +1,4 @@
-﻿
+﻿#if ENABLE_TESTS
 
 using System;
 using System.Collections.Generic;
@@ -453,3 +453,4 @@ namespace TestMasterCard
 
 }
 
+#endif

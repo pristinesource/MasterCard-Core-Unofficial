@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "copyToOutput": [
+      "mcapi_sandbox_key.p12",
+      "EZMATCH-DEV_sandbox.p12"
+    ]
+  },
+
+  "dependencies": {
+    "MasterCard-Core-Unofficial": {
+      "target": "project"
+    },
+    "MasterCard-Core-Unofficial.Tests": {
+      "target": "project"
+    },
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    }
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  }
+}

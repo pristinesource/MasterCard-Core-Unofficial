@@ -1,4 +1,4 @@
-﻿
+﻿#if ENABLE_TESTS
 
 
 using System;
@@ -82,3 +82,4 @@ namespace TestMasterCard
 	}
 }
 
+#endif

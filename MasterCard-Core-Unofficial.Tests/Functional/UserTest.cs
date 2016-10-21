@@ -1,3 +1,4 @@
+#if ENABLE_TESTS
 /*
  * Copyright 2016 MasterCard International.
  *
@@ -304,3 +305,4 @@ namespace TestMasterCard
 }
 
 
+#endif

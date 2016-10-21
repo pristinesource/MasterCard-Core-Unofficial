@@ -1,4 +1,4 @@
-﻿
+﻿#if ENABLE_TESTS
 
 using System;
 using System.Text;
@@ -72,3 +72,4 @@ namespace TestMasterCard
 
 }
 
+#endif

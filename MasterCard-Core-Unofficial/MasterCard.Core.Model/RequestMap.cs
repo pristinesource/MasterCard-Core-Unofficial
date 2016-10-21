@@ -4,6 +4,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace MasterCard.Core.Model
 {
@@ -424,84 +426,88 @@ namespace MasterCard.Core.Model
 			return result;
 		}
 
-		private static List<object> ParseListOfObjects(IList<object> input)
-		{
-			List<object> list = new List<object>();
-			foreach (object current in input)
-			{
-				object item;
-				if (current is IDictionary)
-				{
-					item = RequestMap.ParseDictionary((Dictionary<string, object>)current);
-				}
-				else if (current is JObject)
-				{
-					item = RequestMap.ParseDictionary(((JObject)current).ToObject<Dictionary<string, object>>());
-				}
-				else
-				{
-					item = current;
-				}
-				list.Add(item);
-			}
-			return list;
-		}
+    public static IDictionary<string, object> AsDictionaryFromXml(string xml) {
+      string jsonText;
+      try {
+#if NET461
+        XmlDocument doc = new XmlDocument();
+        doc.LoadXml(xml);
+        jsonText = JsonConvert.SerializeXmlNode(doc);
+#else
+        XDocument doc = XDocument.Parse(xml);
+        jsonText = JsonConvert.SerializeXNode(doc);
+#endif
+      } catch(Exception ex) {
+        jsonText = JsonConvert.SerializeObject(new {
+          Errors = new {
+            Error = new {
+              Source = "SDK.APICONTROLLER",
+              ReasonCode = "INVALID_XML_RESPONSE",
+              Description = "Error parsing XML response: " + ex.Message,
+              Recoverable = "FALSE",
+              RawData = xml
+            }
+          }
+        });
+      }
 
-		private static List<Dictionary<string, object>> ParseListOfDictionary(IList<object> input)
-		{
-			List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
-			foreach (object current in input)
-			{
-				Dictionary<string, object> item = null;
-				if (current is IDictionary)
-				{
-					item = RequestMap.ParseDictionary((IDictionary<string, object>)current);
-				}
-				else if (current is JObject)
-				{
-					item = RequestMap.ParseDictionary(((JObject)current).ToObject<Dictionary<string, object>>());
-				}
-				list.Add(item);
-			}
-			return list;
-		}
+      return AsDictionary(jsonText);
+    }
 
-		private static Dictionary<string, object> ParseDictionary(IDictionary<string, object> input)
-		{
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
-			foreach (KeyValuePair<string, object> current in input)
-			{
-				object value;
-				if (current.Value is IDictionary)
-				{
-					value = RequestMap.ParseDictionary((IDictionary<string, object>)current.Value);
-				}
-				else if (current.Value is JObject)
-				{
-					value = RequestMap.ParseDictionary(((JObject)current.Value).ToObject<IDictionary<string, object>>());
-				}
-				else if (current.Value is JArray)
-				{
-					JToken jToken = ((JArray)current.Value)[0];
-					if (jToken is JObject || jToken is IDictionary)
-					{
-						value = RequestMap.ParseListOfDictionary(((JArray)current.Value).ToObject<List<object>>());
-					}
-					else
-					{
-						value = RequestMap.ParseListOfObjects(((JArray)current.Value).ToObject<List<object>>());
-					}
-				}
-				else
-				{
-					value = current.Value;
-				}
-				dictionary.Add(current.Key, value);
-			}
-			return dictionary;
-		}
+    private static List<object> ParseListOfObjects(IList<object> input) {
+      List<object> list = new List<object>();
+      foreach(object current in input) {
+        object item;
+        if(current is IDictionary) {
+          item = RequestMap.ParseDictionary((Dictionary<string, object>)current);
+        } else if(current is JObject) {
+          item = RequestMap.ParseDictionary(((JObject)current).ToObject<Dictionary<string, object>>());
+        } else {
+          item = current;
+        }
+        list.Add(item);
+      }
+      return list;
+    }
 
-		IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
+    private static List<Dictionary<string, object>> ParseListOfDictionary(IList<object> input) {
+      List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+      foreach(object current in input) {
+        Dictionary<string, object> item = null;
+        if(current is IDictionary) {
+          item = RequestMap.ParseDictionary((IDictionary<string, object>)current);
+        } else if(current is JObject) {
+          item = RequestMap.ParseDictionary(((JObject)current).ToObject<Dictionary<string, object>>());
+        }
+        list.Add(item);
+      }
+      return list;
+    }
+
+    private static Dictionary<string, object> ParseDictionary(IDictionary<string, object> input) {
+      Dictionary<string, object> dictionary = new Dictionary<string, object>();
+      foreach(KeyValuePair<string, object> current in input) {
+        object value;
+        if(current.Value is IDictionary) {
+          value = RequestMap.ParseDictionary((IDictionary<string, object>)current.Value);
+        } else if(current.Value is JObject) {
+          value = RequestMap.ParseDictionary(((JObject)current.Value).ToObject<IDictionary<string, object>>());
+        } else if(current.Value is JArray) {
+          JToken jToken = ((JArray)current.Value)[0];
+          if(jToken is JObject || jToken is IDictionary) {
+            value = RequestMap.ParseListOfDictionary(((JArray)current.Value).ToObject<List<object>>());
+          } else {
+            value = RequestMap.ParseListOfObjects(((JArray)current.Value).ToObject<List<object>>());
+          }
+        } else {
+          value = current.Value;
+        }
+        dictionary.Add(current.Key, value);
+      }
+      return dictionary;
+    }
+
+    IEnumerator<KeyValuePair<string, object>> IEnumerable<KeyValuePair<string, object>>.GetEnumerator()
 		{
 			return this.__storage.GetEnumerator();
 		}

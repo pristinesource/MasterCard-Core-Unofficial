@@ -29,7 +29,8 @@ namespace MasterCard.Core.Model
 		protected static T Execute<T>(string operationUUID, T inputObject) where T : BaseObject
 		{
 			IDictionary<string, object> dictionary = new ApiController(inputObject.GetOperationMetadata().Version).Execute(inputObject.GetOperationConfig(operationUUID), inputObject.GetOperationMetadata(), inputObject);
-			if (dictionary != null)
+            dictionary = dictionary ?? new Dictionary<string, object>();
+			if (inputObject != null)
 			{
 				inputObject.Clear();
 				inputObject.AddAll(dictionary);

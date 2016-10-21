@@ -50,13 +50,14 @@
       "certificate.p12",
       "mastercard_private.pem",
       "mastercard_public.crt",
-      "prod_key.p12"
+      "prod_key.p12",
+      "mcapi_sandbox_key.p12"
     ]
   },
 
   "runtimes": {
-    "Win": {},
+    //"Win": {},
     "win7-x64" : {},
-    "unix" : {}
+    //"unix" : {}
   }
 }

@@ -1,5 +1,5 @@
-﻿{
-  "version": "1.1.4",
+{
+  "version": "101.1.6",
   "authors": [ "PristineSource" ],
   "title": "MasterCard's API SDK - Unofficial",
   "description": "This is a duplication of MasterCard-Core, but has compatibility to .NET Core.",
@@ -14,7 +14,9 @@
     "System.Runtime.Serialization.Formatters": "4.0.0-rc3-24212-01",
     "Newtonsoft.Json": "9.0.1",
     "System.Security.Cryptography.Csp": "4.0.0",
-    "System.Reflection.TypeExtensions": "4.1.0"
+    "System.Reflection.TypeExtensions": "4.1.0",
+    "System.Xml.XmlDocument": "4.0.1",
+    "System.Xml.XDocument": "4.0.11"
   },
 
   "frameworks": {
@@ -48,7 +50,7 @@
     "licenseUrl": "https://opensource.org/licenses/BSD-2-Clause",
     "iconUrl": "",
     "summary": "This is the core library for all the SDKs in the MasterCard developer portal",
-    "releaseNotes": "",
+    "releaseNotes": "101.1.6 - Added the ability to parse xml responses for when the API does not support a JSON response.\n101.1.5 - Added ability to parse XML repsonses.\n1.1.4 - Duplication of original code modified to work with .Net Core.",
     "tags": [ "MasterCard", "netcore", "net core", "api", "core" ],
     "repository": {
       "type": "git",
