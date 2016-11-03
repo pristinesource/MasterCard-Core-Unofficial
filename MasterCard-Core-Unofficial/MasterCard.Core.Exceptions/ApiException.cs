@@ -14,6 +14,8 @@ namespace MasterCard.Core.Exceptions
 
 		protected string description;
 
+    protected int status;
+
 		private IDictionary<string, object> errorData;
 
 		public virtual IDictionary<string, object> ErrorData
@@ -60,7 +62,13 @@ namespace MasterCard.Core.Exceptions
 			}
 		}
 
-		public ApiException()
+    public virtual int StatusCode {
+      get {
+        return this.status;
+      }
+    }
+
+    public ApiException()
 		{
 		}
 
@@ -83,6 +91,7 @@ namespace MasterCard.Core.Exceptions
 
 		public ApiException(int status, IDictionary<string, object> errorData)
 		{
+      this.status = status;
 			this.errorData = errorData;
 			if (errorData.ContainsKey("Errors"))
 			{
