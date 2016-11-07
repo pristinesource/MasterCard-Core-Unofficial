@@ -35,57 +35,64 @@ using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core.Security.OAuth {
 
-    public class OAuthAuthentication : AuthenticationInterface {
-        private readonly AsymmetricAlgorithm privateKey;
-        private readonly String clientId;
-        private readonly UTF8Encoding encoder;
+  public class OAuthAuthentication : AuthenticationInterface {
+    private readonly AsymmetricAlgorithm privateKey;
+    private readonly String clientId;
+    private readonly UTF8Encoding encoder;
 
-        public AsymmetricAlgorithm PrivateKey {
-            get {
-                return privateKey;
-            }
-        }
-
-        public String ClientId {
-            get {
-                return clientId;
-            }
-        }
-
-        public OAuthAuthentication(String clientId, String filePath, String alias, String password) {
-            X509Certificate2 cert = new X509Certificate2(filePath, password);
-            privateKey = cert.GetRSAPrivateKey();
-            this.clientId = clientId;
-            encoder = new UTF8Encoding();
-        }
-
-        public void SignRequest(Uri uri, IRestRequest request) {
-            String uriString = uri.ToString();
-            String methodString = request.Method.ToString();
-            //String bodyString = (String) request.Parameters.FirstOrDefault (p => p.Type == ParameterType.RequestBody).Value;
-
-            String bodyString = "";
-            Parameter bodyParam = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody);
-            if(bodyParam != null) {
-                bodyString = bodyParam.Value.ToString();
-            }
-
-            String signature = OAuthUtil.GenerateSignature(uriString, methodString, bodyString, clientId, privateKey, this);
-            request.AddHeader("Authorization", signature);
-        }
-
-        public string SignMessage(string message) {
-            // Hash the data
-            SHA1 sha1 = SHA1.Create();// new SHA1CryptoServiceProvider();
-            byte[] baseStringBytes = encoder.GetBytes(message);
-            byte[] hash = sha1.ComputeHash(baseStringBytes);
-
-            // Sign the hash
-            RSA csp = (RSA)privateKey;
-
-            byte[] SignedHashValue = csp.SignHash(hash, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
-            return Convert.ToBase64String(SignedHashValue);
-        }
+    public AsymmetricAlgorithm PrivateKey {
+      get {
+        return privateKey;
+      }
     }
+
+    public String ClientId {
+      get {
+        return clientId;
+      }
+    }
+
+    public OAuthAuthentication(String clientId, String filePath, String alias, String password) {
+      X509Certificate2 cert = new X509Certificate2(filePath, password);
+      privateKey = cert.GetRSAPrivateKey();
+      this.clientId = clientId;
+      encoder = new UTF8Encoding();
+    }
+
+    public OAuthAuthentication(String clientId, byte[] rawCertificateData, String alias, String password) {
+      X509Certificate2 cert = new X509Certificate2(rawCertificateData, password);
+      privateKey = cert.GetRSAPrivateKey();
+      this.clientId = clientId;
+      encoder = new UTF8Encoding();
+    }
+
+    public void SignRequest(Uri uri, IRestRequest request) {
+      String uriString = uri.ToString();
+      String methodString = request.Method.ToString();
+      //String bodyString = (String) request.Parameters.FirstOrDefault (p => p.Type == ParameterType.RequestBody).Value;
+
+      String bodyString = "";
+      Parameter bodyParam = request.Parameters.FirstOrDefault(p => p.Type == ParameterType.RequestBody);
+      if(bodyParam != null) {
+        bodyString = bodyParam.Value.ToString();
+      }
+
+      String signature = OAuthUtil.GenerateSignature(uriString, methodString, bodyString, clientId, privateKey, this);
+      request.AddHeader("Authorization", signature);
+    }
+
+    public string SignMessage(string message) {
+      // Hash the data
+      SHA1 sha1 = SHA1.Create();// new SHA1CryptoServiceProvider();
+      byte[] baseStringBytes = encoder.GetBytes(message);
+      byte[] hash = sha1.ComputeHash(baseStringBytes);
+
+      // Sign the hash
+      RSA csp = (RSA)privateKey;
+
+      byte[] SignedHashValue = csp.SignHash(hash, HashAlgorithmName.SHA1, RSASignaturePadding.Pkcs1);
+      return Convert.ToBase64String(SignedHashValue);
+    }
+  }
 
 }
