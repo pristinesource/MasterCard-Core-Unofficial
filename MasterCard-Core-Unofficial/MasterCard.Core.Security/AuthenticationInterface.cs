@@ -1,5 +1,6 @@
 using RestSharp;
 using System;
+using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core.Security
 {

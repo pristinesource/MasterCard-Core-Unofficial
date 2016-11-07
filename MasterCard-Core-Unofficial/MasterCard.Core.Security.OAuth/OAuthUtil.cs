@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
+using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core.Security.OAuth
 {
@@ -40,12 +41,12 @@ namespace MasterCard.Core.Security.OAuth
 			});
 		}
 
-		public static string RsaSign(string baseString)
+		public static string RsaSign(string baseString, AuthenticationInterface auth = null)
 		{
-			return ApiConfig.GetAuthentication().SignMessage(baseString);
+			return (auth ?? ApiConfig.GetAuthentication()).SignMessage(baseString);
 		}
 
-		public static string GenerateSignature(string URL, string method, string body, string clientId, AsymmetricAlgorithm privateKey)
+		public static string GenerateSignature(string URL, string method, string body, string clientId, AsymmetricAlgorithm privateKey, AuthenticationInterface auth = null)
 		{
 			OAuthParameters oAuthParameters = new OAuthParameters();
 			oAuthParameters.setOAuthConsumerKey(clientId);
@@ -58,7 +59,7 @@ namespace MasterCard.Core.Security.OAuth
 				string oAuthBodyHash = Util.Base64Encode(Util.Sha1Encode(body));
 				oAuthParameters.setOAuthBodyHash(oAuthBodyHash);
 			}
-			string oAuthSignature = OAuthUtil.RsaSign(OAuthUtil.GetBaseString(URL, method, oAuthParameters.getBaseParameters()));
+			string oAuthSignature = OAuthUtil.RsaSign(OAuthUtil.GetBaseString(URL, method, oAuthParameters.getBaseParameters()), auth);
 			oAuthParameters.setOAuthSignature(oAuthSignature);
 			StringBuilder stringBuilder = new StringBuilder();
 			foreach (KeyValuePair<string, string> current in oAuthParameters.getBaseParameters())

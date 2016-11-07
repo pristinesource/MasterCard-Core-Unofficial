@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core.Model
 {
@@ -21,14 +22,14 @@ namespace MasterCard.Core.Model
 
 		protected abstract OperationMetadata GetOperationMetadata();
 
-		protected static ResourceList<T> ExecuteForList<T>(string operationUUID, T inputObject) where T : BaseObject
+		protected static ResourceList<T> ExecuteForList<T>(string operationUUID, T inputObject, IndividualApiConfig apiConfig = null) where T : BaseObject
 		{
-			return new ResourceList<T>(BaseObject.Execute<T>(operationUUID, inputObject));
+			return new ResourceList<T>(BaseObject.Execute<T>(operationUUID, inputObject, apiConfig));
 		}
 
-		protected static T Execute<T>(string operationUUID, T inputObject) where T : BaseObject
+		protected static T Execute<T>(string operationUUID, T inputObject, IndividualApiConfig apiConfig = null) where T : BaseObject
 		{
-			IDictionary<string, object> dictionary = new ApiController(inputObject.GetOperationMetadata().Version).Execute(inputObject.GetOperationConfig(operationUUID), inputObject.GetOperationMetadata(), inputObject);
+			IDictionary<string, object> dictionary = new ApiController(inputObject.GetOperationMetadata().Version, apiConfig).Execute(inputObject.GetOperationConfig(operationUUID), inputObject.GetOperationMetadata(), inputObject);
             dictionary = dictionary ?? new Dictionary<string, object>();
 			if (inputObject != null)
 			{

@@ -31,6 +31,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core.Security.OAuth {
 
@@ -69,7 +70,7 @@ namespace MasterCard.Core.Security.OAuth {
                 bodyString = bodyParam.Value.ToString();
             }
 
-            String signature = OAuthUtil.GenerateSignature(uriString, methodString, bodyString, clientId, privateKey);
+            String signature = OAuthUtil.GenerateSignature(uriString, methodString, bodyString, clientId, privateKey, this);
             request.AddHeader("Authorization", signature);
         }
 

@@ -18,7 +18,7 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using MasterCard_Core_Unofficial.MasterCard.Extensions;
-
+using MasterCard_Core_Unofficial.MasterCard.Core;
 
 namespace MasterCard.Core {
   public class ApiController {
@@ -56,12 +56,14 @@ namespace MasterCard.Core {
 #endif
     }
 
-    public ApiController(string apiVersion) {
+    private readonly IndividualApiConfig _apiConfig;
+
+    public ApiController(string apiVersion, IndividualApiConfig apiConfig = null) {
       this.apiVersion = apiVersion;
       this.CheckState();
-      this.hostUrl = ApiConfig.GetLiveUrl();
-      if(ApiConfig.IsSandbox()) {
-        this.hostUrl = ApiConfig.GetSandboxUrl();
+      this.hostUrl = _apiConfig?.GetLiveUrl() ?? ApiConfig.GetLiveUrl();
+      if(_apiConfig?.IsSandbox() ?? ApiConfig.IsSandbox()) {
+        this.hostUrl = _apiConfig?.GetSandboxUrl() ?? ApiConfig.GetSandboxUrl();
       }
     }
 
@@ -196,16 +198,16 @@ namespace MasterCard.Core {
     }
 
     private void CheckState() {
-      if(ApiConfig.GetAuthentication() == null) {
+      if((_apiConfig?.GetAuthentication() ?? ApiConfig.GetAuthentication()) == null) {
         throw new InvalidOperationException("No ApiConfig.authentication has been configured");
       }
       try {
-        new Uri(ApiConfig.GetLiveUrl());
+        new Uri(_apiConfig?.GetLiveUrl() ?? ApiConfig.GetLiveUrl());
       } catch(UriFormatException innerException) {
         throw new InvalidOperationException("Invalid URL supplied for API_BASE_LIVE_URL", innerException);
       }
       try {
-        new Uri(ApiConfig.GetSandboxUrl());
+        new Uri(_apiConfig?.GetSandboxUrl() ?? ApiConfig.GetSandboxUrl());
       } catch(UriFormatException innerException2) {
         throw new InvalidOperationException("Invalid URL supplied for API_BASE_SANDBOX_URL", innerException2);
       }
@@ -291,7 +293,7 @@ namespace MasterCard.Core {
                 ":",
                 uRL.Port
       }));
-      CryptographyInterceptor cryptographyInterceptor = ApiConfig.GetCryptographyInterceptor(uRL.AbsolutePath);
+      CryptographyInterceptor cryptographyInterceptor = _apiConfig?.GetCryptographyInterceptor(uRL.AbsolutePath) ?? ApiConfig.GetCryptographyInterceptor(uRL.AbsolutePath);
       string action = config.Action;
       if(!(action == "create")) {
         if(!(action == "delete")) {
@@ -339,7 +341,7 @@ namespace MasterCard.Core {
       foreach(KeyValuePair<string, object> current in dictionary2) {
         restyRequest.AddHeader(current.Key, current.Value.ToString());
       }
-      ApiConfig.GetAuthentication().SignRequest(uRL, restyRequest);
+      (_apiConfig?.GetAuthentication() ?? ApiConfig.GetAuthentication()).SignRequest(uRL, restyRequest);
       restyRequest.AbsoluteUrl = uRL;
       restyRequest.BaseUrl = baseUrl;
       restyRequest.interceptor = cryptographyInterceptor;
