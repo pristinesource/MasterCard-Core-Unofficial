@@ -60,6 +60,7 @@ namespace MasterCard.Core {
 
     public ApiController(string apiVersion, IndividualApiConfig apiConfig = null) {
       this.apiVersion = apiVersion;
+      this._apiConfig = apiConfig;
       this.CheckState();
       this.hostUrl = _apiConfig?.GetLiveUrl() ?? ApiConfig.GetLiveUrl();
       if(_apiConfig?.IsSandbox() ?? ApiConfig.IsSandbox()) {
