@@ -17,6 +17,16 @@ namespace MasterCard_Core_Unofficial.MasterCard.Core {
 
     private string API_BASE_SANDBOX_URL = "https://sandbox.api.mastercard.com";
 
+    private Action DoEvents { get; set; }
+
+    public void setDoEvents(Action a) {
+      this.DoEvents = a;
+    }
+
+    public Action getDoEvents() {
+      return this.DoEvents;
+    }
+
     public string GetLiveUrl() {
       return this.API_BASE_LIVE_URL;
     }

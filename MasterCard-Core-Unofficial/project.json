@@ -1,5 +1,5 @@
 {
-  "version": "101.1.10",
+  "version": "101.1.11",
   "authors": [ "PristineSource" ],
   "title": "MasterCard's API SDK - Unofficial",
   "description": "This is a duplication of MasterCard-Core, but has compatibility to .NET Core.",
@@ -50,7 +50,7 @@
     "licenseUrl": "https://opensource.org/licenses/BSD-2-Clause",
     "iconUrl": "",
     "summary": "This is the core library for all the SDKs in the MasterCard developer portal",
-    "releaseNotes": "101.1.10 - Fixed bug in IndividualApiConfig\n101.1.9 - modified OAuthAuthentication to accept the private key data via a byte array\n101.1.8 - Added IndividualApiConfig\n101.1.7 - Added StatusCode to ApiException\n101.1.6 - Added the ability to parse xml responses for when the API does not support a JSON response.\n101.1.5 - Added ability to parse XML repsonses.\n1.1.4 - Duplication of original code modified to work with .Net Core.",
+    "releaseNotes": "101.1.11 - More bug fixes\n101.1.10 - Fixed bug in IndividualApiConfig\n101.1.9 - modified OAuthAuthentication to accept the private key data via a byte array\n101.1.8 - Added IndividualApiConfig\n101.1.7 - Added StatusCode to ApiException\n101.1.6 - Added the ability to parse xml responses for when the API does not support a JSON response.\n101.1.5 - Added ability to parse XML repsonses.\n1.1.4 - Duplication of original code modified to work with .Net Core.",
     "tags": [ "MasterCard", "netcore", "net core", "api", "core" ],
     "repository": {
       "type": "git",

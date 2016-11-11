@@ -19,6 +19,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using MasterCard_Core_Unofficial.MasterCard.Extensions;
 using MasterCard_Core_Unofficial.MasterCard.Core;
+using System.Threading.Tasks;
 
 namespace MasterCard.Core {
   public class ApiController {
@@ -107,10 +108,22 @@ namespace MasterCard.Core {
         ApiController.log.Debug("excute(), request.Body=");
         ApiController.log.Debug(request.Parameters.Where(x => x.Type == ParameterType.RequestBody));
 
-        var task = restClient.ExecuteRequestAsync(request);
-        task.ConfigureAwait(false);
-        restResponse = task.Result;
-
+        
+        restClient.UseSynchronizationContext = true;
+#if NET461
+        System.Net.ServicePointManager.Expect100Continue = false;
+        System.Net.ServicePointManager.MaxServicePointIdleTime = 5000;
+        //System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11;
+        restResponse = restClient.Execute(request);
+#elif NETSTANDARD1_6
+        restResponse = AsyncHelpers.RunSync(async () => {
+          return await restClient.ExecuteRequestAsync(request);
+        },
+        () => {
+          this._apiConfig?.getDoEvents()?.Invoke();
+          return Task.FromResult(0);
+        });
+#endif
         ApiController.log.Debug("Execute(), response.Header=");
         ApiController.log.Debug(restResponse.Headers);
         ApiController.log.Debug("Execute(), response.Body=");
