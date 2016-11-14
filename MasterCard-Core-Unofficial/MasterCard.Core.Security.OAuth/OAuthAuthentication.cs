@@ -52,15 +52,15 @@ namespace MasterCard.Core.Security.OAuth {
       }
     }
 
-    public OAuthAuthentication(String clientId, String filePath, String alias, String password) {
-      X509Certificate2 cert = new X509Certificate2(filePath, password);
+    public OAuthAuthentication(String clientId, String filePath, String alias, String password, X509KeyStorageFlags flags = X509KeyStorageFlags.DefaultKeySet) {
+      X509Certificate2 cert = new X509Certificate2(filePath, password, flags);
       privateKey = cert.GetRSAPrivateKey();
       this.clientId = clientId;
       encoder = new UTF8Encoding();
     }
 
-    public OAuthAuthentication(String clientId, byte[] rawCertificateData, String alias, String password) {
-      X509Certificate2 cert = new X509Certificate2(rawCertificateData, password);
+    public OAuthAuthentication(String clientId, byte[] rawCertificateData, String alias, String password, X509KeyStorageFlags flags = X509KeyStorageFlags.DefaultKeySet) {
+      X509Certificate2 cert = new X509Certificate2(rawCertificateData, password, flags);
       privateKey = cert.GetRSAPrivateKey();
       this.clientId = clientId;
       encoder = new UTF8Encoding();
